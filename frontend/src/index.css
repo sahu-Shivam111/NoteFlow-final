@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Outfit', sans-serif;
+    @apply min-h-screen antialiased;
+  }
+
+  body {
+    @apply min-h-screen text-slate-900 transition-colors duration-300;
+    background-color: #f3f5fb;
+    background-image:
+      radial-gradient(980px 420px at -8% -12%, rgba(37, 99, 235, 0.16), transparent 58%),
+      radial-gradient(760px 380px at 108% -8%, rgba(99, 102, 241, 0.12), transparent 52%);
+    overflow-x: hidden;
+  }
+
+  html.dark,
+  .dark body {
+    background-color: #090e1a !important;
+    color: #e8edf7 !important;
+    background-image:
+      radial-gradient(900px 420px at -10% -16%, rgba(59, 130, 246, 0.22), transparent 55%),
+      radial-gradient(720px 360px at 110% -6%, rgba(129, 140, 248, 0.16), transparent 50%) !important;
+  }
+
+  ::selection {
+    background: rgba(37, 99, 235, 0.22);
+  }
+}
+
+@layer components {
+  .input-box {
+    @apply w-full text-sm bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 px-4 py-3 rounded-xl mb-4 outline-none text-slate-900 dark:text-slate-100 placeholder:text-slate-400 transition-all duration-200;
+  }
+
+  .input-box:focus {
+    @apply border-blue-500 bg-white dark:bg-slate-800 ring-4 ring-blue-500/10;
+  }
+
+  .btn-primary {
+    @apply w-full text-sm font-semibold text-white py-3 rounded-xl my-1 bg-gradient-to-r from-blue-600 to-indigo-600 shadow-lg shadow-blue-600/20 hover:shadow-blue-600/30 hover:brightness-110 active:scale-[0.99] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .icon-btn {
+    @apply text-xl text-slate-300 cursor-pointer hover:text-primary;
+  }
+
+  .input-lable {
+    @apply text-xs text-slate-400;
+  }
+
+  .field-label {
+    @apply text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-400 dark:text-slate-500;
+  }
+
+  .dark .ql-toolbar {
+    @apply border-slate-700 bg-slate-800 text-slate-200;
+  }
+
+  .dark .ql-container {
+    @apply border-slate-700 bg-slate-800 text-slate-200 !important;
+  }
+
+  .dark .ql-stroke {
+    stroke: #e5e7eb !important;
+  }
+
+  .dark .ql-fill {
+    fill: #e5e7eb !important;
+  }
+
+  .dark .ql-picker {
+    color: #e5e7eb !important;
+  }
+
+  .dark .ql-picker-options {
+    @apply bg-slate-800 border-slate-600 !important;
+  }
+
+  .dark .ql-editor.ql-blank::before {
+    color: #9ca3af !important;
+  }
+
+  .dark .ql-editor {
+    color: #f3f4f6 !important;
+  }
+
+  .dark .ql-editor p,
+  .dark .ql-editor span,
+  .dark .ql-editor h1,
+  .dark .ql-editor h2,
+  .dark .ql-editor h3,
+  .dark .ql-editor li {
+    color: inherit !important;
+  }
+}
+
+.ReactModal__Content {
+  border-radius: 1.5rem;
+}
+
+.ReactModal__Overlay {
+  backdrop-filter: blur(6px);
+}
+
+.quill-container .ql-toolbar {
+  border: 0 !important;
+  border-bottom: 1px solid rgb(226 232 240) !important;
+  background: transparent;
+}
+
+.dark .quill-container .ql-toolbar {
+  border-bottom-color: rgb(51 65 85) !important;
+}
+
+.quill-container .ql-container {
+  border: 0 !important;
+  min-height: 140px;
+  font-family: Outfit, ui-sans-serif, system-ui, sans-serif;
+}
+
+.quill-container .ql-editor {
+  min-height: 140px;
+}
