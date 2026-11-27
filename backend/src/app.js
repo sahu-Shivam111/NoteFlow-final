@@ -11,8 +11,26 @@ const allowedOrigins = getAllowedOrigins();
 
 const app = express();
 
+// 1. CORS should come first
+app.use(
+  cors({
+    origin(origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(null, false);
+      }
+    },
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true,
+  })
+);
+
+// 2. Rate limiter — apply only once
 app.use(globalLimiter);
 
+// 3. Security headers
 app.use(
   helmet({
     crossOriginResourcePolicy: { policy: "cross-origin" },
@@ -29,22 +47,13 @@ app.use(
   })
 );
 
+// 4. Parse JSON
 app.use(express.json({ limit: "1mb" }));
 
-app.use(
-  cors({
-    origin(origin, callback) {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-        return;
-      }
-      callback(null, false);
-    },
-    methods: ["GET", "POST", "PUT", "DELETE"],
-  })
-);
-
+// 5. Routes
 app.use("/", routes);
+
+// 6. Error handler
 app.use(errorHandler);
 
 module.exports = app;
