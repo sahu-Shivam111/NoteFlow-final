@@ -1,13 +1,9 @@
 require("dotenv").config();
 
-const DEFAULT_ORIGINS = [
-  "http://localhost:5173",
-  "http://127.0.0.1:5173",
-  
-];
+
 
 function getAllowedOrigins() {
-  return (process.env.CORS_ORIGINS || DEFAULT_ORIGINS.join(","))
+  return (process.env.CORS_ORIGINS)
     .split(",")
     .map((origin) => origin.trim())
     .filter(Boolean);
